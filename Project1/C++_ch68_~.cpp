@@ -27,6 +27,8 @@
 
 #include <string>
 
+#include "CBST.h"
+
 using std::wcout;
 using std::endl;
 
@@ -36,6 +38,25 @@ using std::make_pair;
 using std::set;
 
 using std::wstring;
+
+// 열거형
+// #define 과 비슷한 면이 있음. => 전처리에 의해 상수값이 정해지기 때문에 디버깅 시 지정해놓은 상수값이 얼마인지 알 수 없음.
+// 다른 열거형과의 중복에 의한 모호한 경우가 발생할 수 있음, => enum class 사용
+// 각각 다른 타입의 enum 클래스를 만들어 다른 enum 타입과의 중복을 방지함
+enum class MY_TYPE
+{
+	TYPE_1, // 0
+	TYPE_2, // 1
+	TYPE_3, // 2
+	TYPE_4, // 4
+	TYPE_5 = 100,
+	TYPE_6, // 101
+};
+
+enum class OTHER_TYPE
+{
+	TYPE_1,
+};
 
 #define MAN		1
 #define WOMAN	2
@@ -147,6 +168,49 @@ int main() // 16
 	{
 
 	}
+
+	CBST<int, int> bstint;
+
+	bstint.insert(make_bstpair(100, 0));
+	bstint.insert(make_bstpair(150, 0));
+	bstint.insert(make_bstpair(50, 0));
+
+	CBST<int, int>::iterator Iter = bstint.begin();
+
+	Iter = bstint.find(50);
+
+	(*Iter).first;
+	Iter->first;
+
+	(*Iter).second;
+	Iter->second;
+
+	tPair<int, int> pair;
+
+	tPair<int, int>* pPair = &pair;
+	pPair->first;
+	pPair->second;
+
+	for (Iter = bstint.begin(); Iter != bstint.end(); ++Iter)
+	{
+		wcout << Iter->first << " " << Iter->second << endl;
+	}
+
+	// erase 
+	// 자식이 없는 경우 : 삭제만 하면 끝
+	// 자식이 하나만 있는 경우 : 삭제 된 자리에 자식으로 대체
+	// 자식이 둘인 경우 : 중위 선행자 혹은 중위 후속자로 대체
+
+	bstint.insert(make_bstpair(25, 0));		//            100
+	bstint.insert(make_bstpair(75, 0));		//		  50        150
+	bstint.insert(make_bstpair(125, 0));	//      25   75  125   175
+	bstint.insert(make_bstpair(175, 0));
+
+	Iter = bstint.find(150);
+	Iter = bstint.erase(Iter);
+
+	Iter = bstint.find(100);
+	Iter = bstint.erase(Iter);
 
 	return 0;
 }

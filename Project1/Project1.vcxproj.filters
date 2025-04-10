@@ -22,6 +22,9 @@
     <Filter Include="Assignment">
       <UniqueIdentifier>{52b5ac28-a580-4576-b483-3aec57eb19d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BST">
+      <UniqueIdentifier>{6032260e-7be2-4d3f-ab8e-de9c0b1c928d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C++_ch17_~.cpp" />
@@ -76,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="CList.h">
       <Filter>LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="CBST.h">
+      <Filter>BST</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
