@@ -89,7 +89,7 @@ struct pair
 	tStdInfo second;
 };
 
-int main() // 16
+int main16()
 {
 	// 이진 탐색
 	// 1. 정렬 되어있는 데이터에 적용 가능, 트리에서만 가능한 것이 아니기에 트리와 무관함

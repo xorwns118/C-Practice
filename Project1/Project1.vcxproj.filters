@@ -59,6 +59,7 @@
     <ClCompile Include="C++_ch57_~.cpp" />
     <ClCompile Include="C++_ch64_~.cpp" />
     <ClCompile Include="C++_ch68_~.cpp" />
+    <ClCompile Include="C++_ch80_~.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="func.h" />

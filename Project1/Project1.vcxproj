@@ -140,6 +140,7 @@
     <ClCompile Include="C++_ch57_~.cpp" />
     <ClCompile Include="C++_ch64_~.cpp" />
     <ClCompile Include="C++_ch68_~.cpp" />
+    <ClCompile Include="C++_ch80_~.cpp" />
     <ClCompile Include="C_ch_21.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
