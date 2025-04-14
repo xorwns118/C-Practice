@@ -134,6 +134,30 @@ public:
 			return *this;
 		}
 
+		iterator& operator ++ (int)
+		{
+			iterator copy = *this;
+
+			++(*this);
+
+			return copy;
+		}
+
+		iterator& operator -- ()
+		{
+			m_pNode = m_pBST->GetInOrderPredecessor(m_pNode);
+			return *this;
+		}
+
+		iterator& operator -- (int)
+		{
+			iterator copy = *this;
+
+			--(*this);
+
+			return copy;
+		}
+
 	public:
 		iterator()
 			: m_pBST(nullptr)
@@ -256,6 +280,44 @@ inline tBSTNode<T1, T2>* CBST<T1, T2>::GetInOrderPredecessor(tBSTNode<T1, T2>* _
 	tBSTNode<T1, T2>* pSuccessor = nullptr;
 
 	// 선행자 만들어보기
+
+	// 1. 왼쪽 자식이 있는 경우, 왼쪽 자식으로 가서, 오른쪽 자식이 없을 때 까지 오른쪽으로 내려감
+	if (_pNode->arrNode[(int)NODE_TYPE::LCHILD] != nullptr)
+	{
+		pSuccessor = _pNode->arrNode[(int)NODE_TYPE::LCHILD];
+
+		while (pSuccessor->arrNode[(int)NODE_TYPE::RCHILD])
+		{
+			pSuccessor = pSuccessor->arrNode[(int)NODE_TYPE::RCHILD];
+		}
+	}
+
+	// 2. 부모로부터 오른쪽 자식일 때 까지 위로 올라감, 그 때 부모가 후속자
+	else
+	{
+		pSuccessor = _pNode;
+
+		while (true)
+		{
+			// 더이상 위쪽으로 갈 수 없다. ==> 마지막 노드
+			if (pSuccessor->IsRoot())
+			{
+				return nullptr;
+			}
+
+			// 부모로부터 오른쪽 자식인지 체크
+			if (pSuccessor->IsRightChild())
+			{
+				// 그 때 부모가 후속자
+				pSuccessor = pSuccessor->arrNode[(int)NODE_TYPE::PARENT];
+				break;
+			}
+			else
+			{
+				pSuccessor = pSuccessor->arrNode[(int)NODE_TYPE::PARENT];
+			}
+		}
+	}
 	
 	return pSuccessor;
 }

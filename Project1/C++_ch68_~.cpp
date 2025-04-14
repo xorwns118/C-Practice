@@ -89,7 +89,7 @@ struct pair
 	tStdInfo second;
 };
 
-int main16()
+int main() //16
 {
 	// 이진 탐색
 	// 1. 정렬 되어있는 데이터에 적용 가능, 트리에서만 가능한 것이 아니기에 트리와 무관함
@@ -211,6 +211,33 @@ int main16()
 
 	Iter = bstint.find(100);
 	Iter = bstint.erase(Iter);
+
+	wcout << L"--------------------" << endl;
+	wcout << endl;
+	wcout << endl;
+	wcout << endl;
+
+	CBST<int, int> mybst;
+
+	for (int i = 1; i < 11; ++i)
+	{
+		mybst.insert(make_bstpair(i, 0));
+	}
+
+	CBST<int, int>::iterator mybstiter;
+	mybstiter = mybst.begin();
+
+	++(++(++mybstiter));
+
+	wcout << L"mybstiter : " << mybstiter->first << endl;
+	++mybstiter;
+	wcout << L"중위 후속자 : " << mybstiter->first << endl;
+	--(--mybstiter);
+	wcout << L"중위 선행자 : " << mybstiter->first << endl;
+
+	CBST<int, int>::iterator test = mybstiter;
+	test = mybstiter++;
+	test = mybstiter--;
 
 	return 0;
 }

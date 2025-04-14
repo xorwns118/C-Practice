@@ -92,7 +92,7 @@ public:
 	}
 };
 
-int main()
+int main17()
 {
 	// 객체지향 언어 특징
 	// 1. 캡슐화 (은닉성)
@@ -137,6 +137,8 @@ int main()
 	pParent = &child;
 	pParent->Output(); // child 를 가리켜도 본질인 parent 형태로 parent 를 가리키고 있기 때문에 parent 의 output을 호출함 => virtual 가상함수로 해결
 
+	pParent = &parent;
+	// † parent 에는 child 가 없기 때문에 이렇게 되면 문제가 생김
 	((CChild*)pParent)->NewFunc(); 
 	// C 스타일의 강제 캐스팅 형변환 => 위험할 수 있음.
 	// pParent 가 parent 의 주소를 받고 있다면 문제가 발생함.
@@ -146,6 +148,7 @@ int main()
 	{
 		pChild->NewFunc(); // 다이나믹 캐스트를 통해 부모 포인터에 있던 타입을 자식 포인터로 캐스팅해서 실제 child 포인터로 받음
 		// 실패할 때를 대비할 수 있어 강제 캐스팅보다 안전함, 실패했을 땐 nullptr
+		// 런타임 중 동적으로 할당
 	} 
 
 	// 다형성, 가상함수(virtual)
@@ -158,7 +161,7 @@ int main()
 	// 부모 클래스에서 선언되지 않은, 오직 자식 쪽에서만 추가된 함수를 호출하고 싶을 때
 	// 자식 포인터 타입으로 일시적으로 캐스팅해서 호출한다.
 	// 문제가 발생할 수 있기 때문에 dynamic_cast 로 안전하게 확인해 볼 수 있다.
-	// RTTI (Run Time Type Identification or Information)
+	// RTTI (Run Time Type Identification or Information) 런타임 중 타입의 정보를 알 수 있다.
 
 	// 추상화
 	// 실제 객체를 생성할 목적의 클래스가 아닌, 상속을 토앻서 구현해야할 내용을 전달하는 상속 목적으로 만들어진 클래스
